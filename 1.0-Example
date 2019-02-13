@@ -1,0 +1,34 @@
+#include<stdio.h>
+#include<string.h>
+
+struct Books {
+   char title[50];
+   char author[50];
+   long int book_id;
+};
+
+void print_struct(struct Books x);
+
+struct Books book1,book2;
+
+int main()
+{
+    printf("Enter book title: ");
+    gets(book1.title);
+    printf("Enter book author: ");
+    gets(book1.author);
+    printf("Enter book id: ");
+    scanf("%ld",&book1.book_id);
+
+    printf("\n");
+    print_struct(book1);
+}
+
+void print_struct(struct Books x)
+{
+   printf( "Book title : %s\n", x.title);
+   printf( "Book author : %s\n", x.author);
+   printf( "Book id : %ld\n", x.book_id);
+}
+
+
