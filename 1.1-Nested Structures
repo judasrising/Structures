@@ -1,0 +1,34 @@
+#ifdef _MSC_VER
+#define _CRT_SECURE_NO_WARNINGS
+#endif
+#include<stdio.h>
+#include<string.h>
+
+struct Address
+{
+	char country[20];
+	char city[20];
+};
+
+struct Student
+{
+	char name[40];
+	int id;
+	struct Address home;
+}student1;
+
+int main()
+{
+	struct Address john = { "England","Birmingham" };
+	strcpy(student1.name, "Paul Markson");
+	student1.id = 1800002686;
+	strcpy(student1.home.country, "USA");
+	strcpy(student1.home.city, "Miami");
+	puts(student1.name);
+	printf("%d\n", student1.id);
+	puts(student1.home.country);
+	puts(student1.home.city);
+
+	getch();
+}
+
