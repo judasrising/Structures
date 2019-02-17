@@ -1,0 +1,55 @@
+#include<stdio.h>
+#define N 2
+#define LENGTH 10
+
+struct Student
+{
+	char name[LENGTH];
+	int math;
+	int phys;
+}data[N];
+
+char calculate_grade(struct Student x)
+{
+	int mean = calculate_mean(x);
+	if (mean >= 90 && mean <= 100)
+		return 'S';
+	else if (mean >= 75 && mean < 90)
+		return 'A';
+	else if (mean >= 65 && mean < 75)
+		return 'B';
+	else if (mean >= 50 && mean < 65)
+		return 'C';
+	else if (mean >= 30 && mean < 50)
+		return 'D';
+	else if (mean >= 0 && mean < 30)
+		return 'F';
+}
+
+void display(struct Student x)
+{
+	printf("%s\t%d\t%d\t %d\t%c\n", x.name, x.math, x.phys,calculate_mean(x),calculate_grade(x));
+}
+
+int calculate_mean(struct Student x)
+{
+	return (x.math + x.phys) / 2;
+}
+
+
+int main()
+{
+	int i;
+	printf("Enter students' informations\n");
+	for (i = 0; i < N; i++) {
+		printf("Name: "); scanf("%s", &data[i].name);
+		printf("Math Grade: "); scanf("%d", &data[i].math);
+		printf("Physics Grade: "); scanf("%d", &data[i].phys);
+		printf("\n");
+	}
+
+	printf("\nNAME\tMATH\tPHYSICS\t MEAN\tGRADE\n");
+	for (i = 0; i < N; i++) {
+		display(data[i]);
+	}
+}
