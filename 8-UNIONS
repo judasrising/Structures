@@ -1,0 +1,46 @@
+#include<stdbool.h>
+#include<string.h>
+#define N 50
+
+struct catalog
+{
+    int stock_number;
+    float price;
+    int item_type;
+    union type
+    {
+        struct
+        {
+            char title[N];
+            char author[N];
+        }book;
+
+        struct
+        {
+            char design[N];
+            char color[N];
+        }mug;
+    }item;
+};
+
+int main()
+{
+    struct catalog item1_book,item2_mug;
+    item1_book.stock_number=45;
+    item1_book.price=12.4;
+    strcpy(item1_book.item.book.title,"Lord of the Rings");
+    strcpy(item1_book.item.book.author,"JRR Tolkien");
+
+    printf("%s by %s\nPrice: $%.2f\n%d items in stock.\n\n",item1_book.item.book.title,item1_book.item.book.author,item1_book.price,
+          item1_book.stock_number );
+
+
+    item2_mug.stock_number=8;
+    item2_mug.price=9.75;
+    strcpy(item2_mug.item.mug.design,"Star Wars Mug");
+    strcpy(item2_mug.item.mug.color,"Black and White");
+
+    printf("%s\n%s Colored\nPrice= $%.2f\n%d items in stock.\n",item2_mug.item.mug.design,item2_mug.item.mug.color,
+           item2_mug.price,item2_mug.stock_number);
+
+}
