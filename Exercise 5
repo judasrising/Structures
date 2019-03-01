@@ -1,0 +1,29 @@
+struct date
+{
+	int month;
+	int day;
+	int year;
+}date1 = { 11,30,1998 };
+
+int day_of_year(struct date d)
+{
+	int months[13] = { 0,31,28,31,30,31,30,31,31,30,31,30,31 };
+	int sum=0,i,j;
+	for (i=1; i < d.month; i++) {
+		for (j = 0; j < months[i]; j++)
+			sum++;
+	}
+
+	for (j = 0; j < d.day; j++)
+		sum ++;
+
+	return sum;
+}
+
+int main()
+{
+	int Day;
+	Day = day_of_year(date1);
+	printf("%d Days", Day);
+	getch();
+}
