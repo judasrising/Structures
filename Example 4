@@ -1,0 +1,24 @@
+typedef struct
+{
+	double real;
+	double imaginary;
+}Complex;
+
+Complex c1 = { 0.0,1.0 }, c2 = { 1.0,0.0 };
+
+Complex add_struct(Complex mem1, Complex mem2)
+{
+	Complex sum;
+	sum.real = mem1.real + mem2.real;
+	sum.imaginary = mem1.imaginary + mem2.imaginary;
+	return sum;
+}
+
+int main()
+{
+	Complex summation;
+	summation = add_struct(c1, c2);
+	printf("real: %.1f", summation.real);
+	printf("\nimaginary: %.1f", summation.imaginary);
+	getch();
+}
