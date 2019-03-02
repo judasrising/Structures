@@ -1,0 +1,39 @@
+typedef struct
+{
+	int numerator;
+	int denominator;
+}Fraction;
+
+
+Fraction lowest_term(Fraction x)
+{
+	int divider;
+	if (x.numerator > x.denominator)
+		divider = x.numerator;
+	else
+		divider = x.denominator;
+
+	while (divider > 0)
+	{
+		if (x.numerator%divider == 0 && x.denominator%divider == 0)
+			break;
+		divider--;
+	}
+
+	x.numerator /= divider;
+	x.denominator /= divider;
+
+	return x;
+}
+
+int main()
+{
+	Fraction f;
+	printf("Enter a fraction number: ");
+	scanf("%d/%d", &f.numerator, &f.denominator);
+	lowest_term(f);
+
+	printf("\n%d/%d", f.numerator, f.denominator);
+
+	getch();
+}
