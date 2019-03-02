@@ -1,0 +1,30 @@
+struct Time
+{
+	int hours;
+	int minutes;
+	int seconds;
+};
+
+struct Time split_time(long total_seconds)
+{
+	struct Time c;
+
+	c.minutes = total_seconds / 60;
+	total_seconds = total_seconds % 60;
+
+	c.hours = c.minutes / 60;
+	c.minutes = c.minutes % 60;
+
+	c.seconds = total_seconds;
+
+	return c;
+}
+int main()
+{
+	long int num = 879453;
+
+	struct Time time1;
+	time1 = split_time(num);
+	printf("%d:%d:%d", time1.hours,time1.minutes,time1.seconds);
+	getch();
+}
