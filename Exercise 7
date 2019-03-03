@@ -1,39 +1,56 @@
+#ifdef _MSC_VER
+#define _CRT_SECURE_NO_WARNINGS
+#endif
+#include<stdio.h>
+#include<stdbool.h>
+#include<stdlib.h>
+#define N 30
+#define MAX 30
+
+/* Assume that the "fraction" structure contains two members: numerator and denominator
+   (both type integer). Write function to reduce the fraction f to lowest terms.     */
+
+
 typedef struct
 {
 	int numerator;
 	int denominator;
 }Fraction;
 
+Fraction x;
 
-Fraction lowest_term(Fraction x)
+
+Fraction reduce_fraction(Fraction f)
 {
 	int divider;
-	if (x.numerator > x.denominator)
-		divider = x.numerator;
+	if (f.numerator > f.denominator)
+		divider = f.numerator;
 	else
-		divider = x.denominator;
+		divider = f.denominator;
 
-	while (divider > 0)
-	{
-		if (x.numerator%divider == 0 && x.denominator%divider == 0)
+	while (divider > 0) {
+		if (f.numerator%divider == 0 && f.denominator%divider == 0)
 			break;
 		divider--;
 	}
 
-	x.numerator /= divider;
-	x.denominator /= divider;
+	f.numerator /= divider;
+	f.denominator /= divider;
 
-	return x;
+	return f;
+}
+
+Fraction add_fract(Fraction f1,Fraction f2)
+{
+
 }
 
 int main()
 {
-	Fraction f;
-	printf("Enter a fraction number: ");
-	scanf("%d/%d", &f.numerator, &f.denominator);
-	lowest_term(f);
-
-	printf("\n%d/%d", f.numerator, f.denominator);
+	x.numerator = 48;
+	x.denominator = 32;
+	reduce_fraction(x);
+	printf("%d/%d", x.numerator, x.denominator);
 
 	getch();
 }
