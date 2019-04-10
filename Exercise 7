@@ -1,56 +1,56 @@
-#ifdef _MSC_VER
 #define _CRT_SECURE_NO_WARNINGS
-#endif
-#include<stdio.h>
-#include<stdbool.h>
-#include<stdlib.h>
-#define N 30
-#define MAX 30
-
-/* Assume that the "fraction" structure contains two members: numerator and denominator
-   (both type integer). Write function to reduce the fraction f to lowest terms.     */
-
+# include<stdio.h>
+# include<stdlib.h>
+#include<string.h>
+#define MAX 20
 
 typedef struct
 {
-	int numerator;
-	int denominator;
+	int num;
+	int denom;
 }Fraction;
 
 Fraction x;
 
-
-Fraction reduce_fraction(Fraction f)
+Fraction reduce(Fraction f)
 {
-	int divider;
-	if (f.numerator > f.denominator)
-		divider = f.numerator;
+	int div;
+	if (f.num < f.denom)
+		div = f.num;
 	else
-		divider = f.denominator;
+		div = f.denom;
 
-	while (divider > 0) {
-		if (f.numerator%divider == 0 && f.denominator%divider == 0)
-			break;
-		divider--;
+	for (; f.num%div != 0 && f.denom%div != 0 && div != 0; div--);
+
+	if (div != 0 && f.num%div==0 && f.denom%div==0)
+	{
+		f.num /= div;
+		f.denom /= div;
 	}
-
-	f.numerator /= divider;
-	f.denominator /= divider;
 
 	return f;
 }
 
-Fraction add_fract(Fraction f1,Fraction f2)
+Fraction add_frac(Fraction f1, Fraction f2)
 {
+	Fraction result;
 
+	result.num = f1.num*f2.denom + f2.num*f1.denom;
+	result.denom = f1.denom*f2.denom;
+
+	return result;
 }
 
 int main()
 {
-	x.numerator = 48;
-	x.denominator = 32;
-	reduce_fraction(x);
-	printf("%d/%d", x.numerator, x.denominator);
+	Fraction x = { 21,3 };
+	Fraction y = { 4,7 };
+	
+	x = reduce(x);
+
+	printf("%d/%d", x.num, x.denom);
+	
 
 	getch();
+
 }
